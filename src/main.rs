@@ -1,11 +1,15 @@
 // Copyright © 2019 Daniele Tricoli <eriol@mornie.org>
-// smbios-udid is licensed under the MIT License, see LICENSE.
+// smbios-uuid is licensed under the MIT License, see LICENSE.
 
 use std::process;
 
 use clap::{crate_authors, crate_version, App, Arg};
 use colored::Colorize;
 use uuid::Uuid;
+
+const ABOUT: &str = "
+smbios-uuid is an utility to convert an UUID defined as in RFC4122
+into the encoding used by PC industry.";
 
 const ERROR_PARSING: &str = "An error occurred while parsing";
 const UUID_ARG_NAME: &str = "UUID";
@@ -14,7 +18,7 @@ fn main() {
     let matches = App::new("smbios-uuid")
         .version(crate_version!())
         .author(crate_authors!())
-        .about("")
+        .about(ABOUT)
         .arg(
             Arg::with_name(UUID_ARG_NAME)
                 .help("The UUID to convert")
