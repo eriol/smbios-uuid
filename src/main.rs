@@ -1,3 +1,6 @@
+// Copyright © 2019 Daniele Tricoli <eriol@mornie.org>
+// smbios-udid is licensed under the MIT License, see LICENSE.
+
 use std::process;
 
 use clap::{crate_authors, crate_version, App, Arg};
@@ -5,14 +8,15 @@ use colored::Colorize;
 use uuid::Uuid;
 
 const ERROR_PARSING: &str = "An error occurred while parsing";
+const UUID_ARG_NAME: &str = "UUID";
 
 fn main() {
-    let matches = App::new("smbios-udid")
+    let matches = App::new("smbios-uuid")
         .version(crate_version!())
         .author(crate_authors!())
         .about("")
         .arg(
-            Arg::with_name("UUID")
+            Arg::with_name(UUID_ARG_NAME)
                 .help("The UUID to convert")
                 .required(true)
                 .index(1),
@@ -20,7 +24,7 @@ fn main() {
         .get_matches();
 
     // We can unwrap because UUID is required.
-    let uuid = matches.value_of("UUID").unwrap();
+    let uuid = matches.value_of(UUID_ARG_NAME).unwrap();
     let uuid = match Uuid::parse_str(uuid) {
         Ok(uuid) => uuid,
         Err(err) => {
