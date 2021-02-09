@@ -11,7 +11,7 @@ used by PC industry.
 ### Installation
 
 ```
-❯ cargo install --git https://github.com/eriol/smbios-uuid
+❯ cargo install --branch main --git https://noa.mornie.org/eriol/smbios-uuid
 ```
 
 ### Usage
